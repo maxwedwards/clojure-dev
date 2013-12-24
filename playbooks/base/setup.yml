@@ -1,0 +1,10 @@
+- hosts: all
+  sudo: yes
+  user: vagrant
+  gather_facts: no
+  vars:
+    - root_password: 'vagrant'
+    - deploy_password: 'vagrant'
+    - logwatch_email: you@yourcompany.com
+  roles:
+    - base

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: yes
+  user: vagrant
+  gather_facts: no
+  vars:
+    install_path: /usr/local/bin/lein
+    lein_script_path: https://raw.github.com/technomancy/leiningen/preview/bin/lein
+  roles:
+    - leiningen
