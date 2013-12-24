@@ -1,6 +1,6 @@
 # Clojure-Dev
 
-This package builds a working Clojure development environment from scratch. on Unbuntu Linux
+This package builds a working Clojure development environment from scratch on Unbuntu Linux
 
 Includes
 
