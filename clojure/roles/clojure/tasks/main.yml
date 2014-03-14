@@ -1,0 +1,52 @@
+- name: Update APT package cache
+  action: apt update_cache=yes
+  
+- name: Install fail2ban
+  action: apt pkg=fail2ban state=installed
+
+# DEPLOY USER
+# ====================================================
+
+- name: Add deployment user
+  action: user name=deploy password={{ deploy_user_password }}
+
+- name: Add authorized deploy key
+  action: authorized_key user=deploy key='$FILE(~/.ssh/id_rsa.pub)'
+
+- name: Remove sudo group rights
+  action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
+
+- name: Add deploy user to sudoers
+  action: lineinfile dest=/etc/sudoers regexp="deploy ALL" line="deploy ALL=(ALL) NOPASSWD:ALL" state=present
+
+# Firewall
+# ====================================================
+
+- name: Setup ufw
+  action: shell ufw allow 22
+
+- name: Setup ufw
+  action: shell ufw allow 80
+
+- name: Setup ufw
+  action: shell ufw allow 443
+
+- name: Enable ufw
+  action: shell echo 'y' | ufw enable
+  
+  
+- name: install java
+  apt: pkg={{ item }}
+  with_items:
+    - openjdk-{{ java_version }}-jre
+    - openjdk-{{ java_version }}-jdk
+    
+- name: ensure wget is installed
+  apt: pkg=wget state=installed
+
+- name: get lein script
+  command: wget --no-check-certificate -O {{ install_path }} {{ lein_script_path }}
+  sudo: True
+
+- name: make executable
+  command: chmod 755 /usr/local/bin/lein

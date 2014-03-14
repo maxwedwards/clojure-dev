@@ -1,9 +1,0 @@
-- name: ensure wget is installed
-  apt: pkg=wget state=installed
-
-- name: get lein script
-  command: wget --no-check-certificate -O {{ install_path }} {{ lein_script_path }}
-  sudo: True
-
-- name: make executable
-  command: chmod 755 /usr/local/bin/lein

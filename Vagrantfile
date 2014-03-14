@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: '33.33.33.33'
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook       = 'playbooks/clojure/setup.yml'
+    ansible.playbook       = 'clojure/setup.yml'
     ansible.inventory_path = 'hosts'
     ansible.verbose        = 'vvv'
   end

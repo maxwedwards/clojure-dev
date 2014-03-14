@@ -1,12 +1,12 @@
 # Clojure-Dev
 
-This package builds a working Clojure development environment from scratch on Unbuntu Linux
+This package builds a working Clojure development environment from scratch on Ubuntu Linux
+that can be used to build Clojure environments locally and for production apps.
 
 Includes
 
 + Leiningen
 + Java 7
-+ Emacs
 
 Building development enviroments should be easy. Install Vagrant and Ansible then you're good to go.
 
@@ -39,4 +39,12 @@ expected: (= 0 1)
 Ran 1 tests containing 1 assertions.
 1 failures, 0 errors.
 Tests failed.
+```
+
+## Running the playbook manually
+
+Here we tell ansible to run the playbook against the vagrant user with the vagrant private key
+
+```
+ansible-playbook -i hosts clojure/setup.yml -u vagrant --private-key ~/.vagrant.d/insecure_private_key
 ```

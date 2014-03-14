@@ -1,3 +1,0 @@
-- include: ../base/setup.yml
-- include: ../open-jdk-7/setup.yml
-- include: ../leiningen/setup.yml

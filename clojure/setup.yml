@@ -1,10 +1,11 @@
 ---
 - hosts: all
   sudo: yes
-  user: vagrant
   gather_facts: no
   vars:
-    install_path: /usr/local/bin/lein
+    deploy_user_password: deploy
+    install_path: /usr/local/bin/lein # system wide install
+    java_version: 7
     lein_script_path: https://raw.github.com/technomancy/leiningen/preview/bin/lein
   roles:
-    - leiningen
+    - clojure
