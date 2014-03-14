@@ -34,7 +34,6 @@
 - name: Enable ufw
   action: shell echo 'y' | ufw enable
   
-  
 - name: install java
   apt: pkg={{ item }}
   with_items:
